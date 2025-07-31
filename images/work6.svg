@@ -1,0 +1,81 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="marble" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#e9ecef;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dee2e6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="300" fill="#f8f9fa"/>
+  
+  <!-- Hand silhouette -->
+  <g transform="translate(50, 50)">
+    <!-- Fingers -->
+    <ellipse cx="40" cy="80" rx="12" ry="40" fill="#f4c2a1" opacity="0.9"/>
+    <ellipse cx="70" cy="60" rx="12" ry="50" fill="#f4c2a1" opacity="0.9"/>
+    <ellipse cx="100" cy="65" rx="12" ry="45" fill="#f4c2a1" opacity="0.9"/>
+    <ellipse cx="130" cy="80" rx="10" ry="35" fill="#f4c2a1" opacity="0.9"/>
+    
+    <!-- Marble base -->
+    <ellipse cx="40" cy="60" rx="10" ry="15" fill="url(#marble)"/>
+    <ellipse cx="70" cy="35" rx="10" ry="18" fill="url(#marble)"/>
+    <ellipse cx="100" cy="40" rx="10" ry="16" fill="url(#marble)"/>
+    <ellipse cx="130" cy="60" rx="8" ry="12" fill="url(#marble)"/>
+    
+    <!-- Marble veins -->
+    <g stroke="#6c757d" stroke-width="0.5" fill="none" opacity="0.4">
+      <path d="M32,58 Q38,60 44,62 Q42,64 36,66"/>
+      <path d="M34,64 Q40,62 46,60"/>
+      
+      <path d="M62,33 Q68,35 74,37 Q72,39 66,41"/>
+      <path d="M64,39 Q70,37 76,35"/>
+      
+      <path d="M92,38 Q98,40 104,42 Q102,44 96,46"/>
+      <path d="M94,44 Q100,42 106,40"/>
+      
+      <path d="M122,58 Q128,60 134,62 Q132,64 126,66"/>
+    </g>
+    
+    <!-- Gold veins -->
+    <g stroke="#ffd700" stroke-width="0.3" fill="none" opacity="0.6">
+      <path d="M35,60 Q40,58 45,60"/>
+      <path d="M65,35 Q70,33 75,35"/>
+      <path d="M95,40 Q100,38 105,40"/>
+      <path d="M125,60 Q130,58 135,60"/>
+    </g>
+    
+    <!-- Subtle highlights -->
+    <g fill="#ffffff" opacity="0.5">
+      <ellipse cx="38" cy="58" rx="1.5" ry="2"/>
+      <ellipse cx="68" cy="33" rx="1.5" ry="2"/>
+      <ellipse cx="98" cy="38" rx="1.5" ry="2"/>
+      <ellipse cx="128" cy="58" rx="1" ry="1.5"/>
+    </g>
+    
+    <!-- Minimalist accent -->
+    <g fill="#ff6b9d" opacity="0.8">
+      <circle cx="40" cy="65" r="0.5"/>
+      <circle cx="70" cy="40" r="0.5"/>
+    </g>
+  </g>
+  
+  <!-- Elegant background elements -->
+  <g fill="#dee2e6" opacity="0.3">
+    <circle cx="70" cy="70" r="25"/>
+    <circle cx="230" cy="120" r="20"/>
+    <circle cx="180" cy="230" r="30"/>
+  </g>
+  
+  <!-- Subtle texture lines -->
+  <g stroke="#adb5bd" stroke-width="0.5" opacity="0.2" fill="none">
+    <path d="M0,50 Q150,60 300,50"/>
+    <path d="M0,150 Q150,160 300,150"/>
+    <path d="M0,250 Q150,260 300,250"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="150" y="280" text-anchor="middle" fill="#2c3e50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Мармуровий ефект</text>
+</svg>

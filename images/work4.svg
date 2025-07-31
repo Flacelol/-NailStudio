@@ -1,0 +1,63 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="300" fill="#0a0a0a"/>
+  
+  <!-- Hand silhouette -->
+  <g transform="translate(50, 50)">
+    <!-- Fingers -->
+    <ellipse cx="40" cy="80" rx="12" ry="40" fill="#f4c2a1" opacity="0.9"/>
+    <ellipse cx="70" cy="60" rx="12" ry="50" fill="#f4c2a1" opacity="0.9"/>
+    <ellipse cx="100" cy="65" rx="12" ry="45" fill="#f4c2a1" opacity="0.9"/>
+    <ellipse cx="130" cy="80" rx="10" ry="35" fill="#f4c2a1" opacity="0.9"/>
+    
+    <!-- Black nails -->
+    <ellipse cx="40" cy="60" rx="10" ry="15" fill="#1a1a1a"/>
+    <ellipse cx="70" cy="35" rx="10" ry="18" fill="#1a1a1a"/>
+    <ellipse cx="100" cy="40" rx="10" ry="16" fill="#1a1a1a"/>
+    <ellipse cx="130" cy="60" rx="8" ry="12" fill="#1a1a1a"/>
+    
+    <!-- Gold accents -->
+    <g fill="#ffd700">
+      <!-- Geometric lines -->
+      <rect x="35" y="58" width="10" height="1" transform="rotate(45 40 58.5)"/>
+      <rect x="35" y="62" width="10" height="1" transform="rotate(-45 40 62.5)"/>
+      
+      <rect x="65" y="33" width="10" height="1" transform="rotate(45 70 33.5)"/>
+      <rect x="65" y="37" width="10" height="1" transform="rotate(-45 70 37.5)"/>
+      
+      <rect x="95" y="38" width="10" height="1" transform="rotate(45 100 38.5)"/>
+      <rect x="95" y="42" width="10" height="1" transform="rotate(-45 100 42.5)"/>
+      
+      <!-- Dots -->
+      <circle cx="40" cy="55" r="1"/>
+      <circle cx="70" cy="30" r="1"/>
+      <circle cx="100" cy="35" r="1"/>
+      <circle cx="130" cy="55" r="0.8"/>
+    </g>
+    
+    <!-- Silver details -->
+    <g fill="#c0c0c0" opacity="0.8">
+      <rect x="38" y="65" width="4" height="0.5"/>
+      <rect x="68" y="40" width="4" height="0.5"/>
+      <rect x="98" y="45" width="4" height="0.5"/>
+      <rect x="128" y="62" width="3" height="0.5"/>
+    </g>
+    
+    <!-- Rhinestones -->
+    <g fill="#ffffff" opacity="0.9">
+      <circle cx="42" cy="58" r="0.8"/>
+      <circle cx="72" cy="33" r="0.8"/>
+      <circle cx="102" cy="38" r="0.8"/>
+      <circle cx="132" cy="58" r="0.6"/>
+    </g>
+  </g>
+  
+  <!-- Dramatic lighting effects -->
+  <g fill="#ffd700" opacity="0.1">
+    <ellipse cx="150" cy="100" rx="100" ry="50"/>
+    <ellipse cx="150" cy="200" rx="80" ry="30"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="150" y="280" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Готичний стиль</text>
+</svg>
