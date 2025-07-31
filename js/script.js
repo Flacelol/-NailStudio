@@ -229,7 +229,7 @@ function formatDate(dateString) {
         day: 'numeric',
         weekday: 'long'
     };
-    return date.toLocaleDateString('it-IT', options);
+    return date.toLocaleDateString('en-US', options);
 }
 
 // Visualizzazione messaggi
