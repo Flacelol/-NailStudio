@@ -1,23 +1,23 @@
-// Ініціалізація EmailJS
+// Inizializzazione EmailJS
 (function() {
-    emailjs.init("YOUR_PUBLIC_KEY"); // Замініть на ваш публічний ключ EmailJS
+    emailjs.init("YOUR_PUBLIC_KEY"); // Sostituire con la vostra chiave pubblica EmailJS
 })();
 
-// DOM елементи
+// Elementi DOM
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const bookingForm = document.getElementById('bookingForm');
 const header = document.querySelector('.header');
 
-// Мобільне меню
+// Menu mobile
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
     document.body.classList.toggle('menu-open');
 });
 
-// Закриття меню при кліку на посилання
+// Chiusura menu al clic sui link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -26,7 +26,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Плавна прокрутка для навігації
+// Scorrimento fluido per la navigazione
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -45,7 +45,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Активна навігація при прокрутці
+// Navigazione attiva durante lo scorrimento
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
     const scrollPos = window.scrollY + header.offsetHeight + 50;
@@ -65,7 +65,7 @@ window.addEventListener('scroll', () => {
         }
     });
     
-    // Зміна стилю хедера при прокрутці
+    // Cambio stile header durante lo scorrimento
     if (window.scrollY > 100) {
         header.style.background = 'rgba(255, 255, 255, 0.98)';
         header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
@@ -75,7 +75,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Встановлення мінімальної дати для запису (сьогодні)
+// Impostazione data minima per la prenotazione (oggi)
 const dateInput = document.getElementById('date');
 if (dateInput) {
     const today = new Date();
@@ -85,38 +85,38 @@ if (dateInput) {
     dateInput.setAttribute('min', minDate);
 }
 
-// Обробка форми запису
+// Gestione form di prenotazione
 if (bookingForm) {
     bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Отримання даних форми
+        // Ottenimento dati del form
         const formData = new FormData(bookingForm);
         const bookingData = {
             name: formData.get('name'),
             phone: formData.get('phone'),
-            email: formData.get('email') || 'Не вказано',
+            email: formData.get('email') || 'Non specificato',
             service: getServiceName(formData.get('service')),
             date: formatDate(formData.get('date')),
             time: formData.get('time'),
-            message: formData.get('message') || 'Немає додаткових побажань'
+            message: formData.get('message') || 'Nessuna richiesta aggiuntiva'
         };
         
-        // Валідація
+        // Validazione
         if (!validateForm(bookingData)) {
             return;
         }
         
-        // Показати індикатор завантаження
+        // Mostra indicatore di caricamento
         showLoading(true);
         
         try {
-            // Відправка через EmailJS
+            // Invio tramite EmailJS
             const response = await emailjs.send(
-                'YOUR_SERVICE_ID', // Замініть на ваш Service ID
-                'YOUR_TEMPLATE_ID', // Замініть на ваш Template ID
+                'YOUR_SERVICE_ID', // Sostituire con il vostro Service ID
+                'YOUR_TEMPLATE_ID', // Sostituire con il vostro Template ID
                 {
-                    to_email: 'your-email@example.com', // Ваш email для отримання заявок
+                    to_email: 'your-email@example.com', // La vostra email per ricevere le richieste
                     from_name: bookingData.name,
                     from_phone: bookingData.phone,
                     from_email: bookingData.email,
@@ -128,45 +128,45 @@ if (bookingForm) {
                 }
             );
             
-            // Успішна відправка
-            showAlert('Ваша заявка успішно відправлена! Ми зв\'яжемося з вами найближчим часом.', 'success');
+            // Invio riuscito
+            showAlert('La vostra richiesta è stata inviata con successo! Vi contatteremo al più presto.', 'success');
             bookingForm.reset();
             
         } catch (error) {
-            console.error('Помилка відправки:', error);
-            showAlert('Виникла помилка при відправці заявки. Спробуйте ще раз або зателефонуйте нам.', 'error');
+            console.error('Errore di invio:', error);
+            showAlert('Si è verificato un errore durante l\'invio della richiesta. Riprovate o chiamateci.', 'error');
         } finally {
             showLoading(false);
         }
     });
 }
 
-// Функція валідації форми
+// Funzione di validazione del form
 function validateForm(data) {
     const errors = [];
     
     if (!data.name || data.name.trim().length < 2) {
-        errors.push('Введіть коректне ім\'я (мінімум 2 символи)');
+        errors.push('Inserire un nome corretto (minimo 2 caratteri)');
     }
     
     if (!data.phone || !isValidPhone(data.phone)) {
-        errors.push('Введіть коректний номер телефону');
+        errors.push('Inserire un numero di telefono corretto');
     }
     
-    if (data.email && data.email !== 'Не вказано' && !isValidEmail(data.email)) {
-        errors.push('Введіть коректний email');
+    if (data.email && data.email !== 'Non specificato' && !isValidEmail(data.email)) {
+        errors.push('Inserire un email corretto');
     }
     
-    if (!data.service || data.service === 'Оберіть послугу') {
-        errors.push('Оберіть послугу');
+    if (!data.service || data.service === 'Scegli il servizio') {
+        errors.push('Scegliere un servizio');
     }
     
     if (!data.date) {
-        errors.push('Оберіть дату');
+        errors.push('Scegliere una data');
     }
     
     if (!data.time) {
-        errors.push('Оберіть час');
+        errors.push('Scegliere un orario');
     }
     
     if (errors.length > 0) {
@@ -177,50 +177,50 @@ function validateForm(data) {
     return true;
 }
 
-// Валідація телефону
+// Validazione telefono
 function isValidPhone(phone) {
     const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
     return phoneRegex.test(phone.replace(/\s/g, ''));
 }
 
-// Валідація email
+// Validazione email
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-// Отримання назви послуги
+// Ottenimento nome del servizio
 function getServiceName(serviceValue) {
     const services = {
-        // Манікюр
-        'classic-manicure': 'Класичний манікюр',
-        'hardware-manicure': 'Апаратний манікюр',
-        'nail-art': 'Нейл-арт',
-        'nail-extension': 'Нарощування',
-        'correction': 'Корекція',
+        // Manicure
+        'classic-manicure': 'Manicure classica',
+        'hardware-manicure': 'Manicure con apparecchio',
+        'nail-art': 'Nail art',
+        'nail-extension': 'Ricostruzione',
+        'correction': 'Correzione',
         
-        // Педикюр
-        'classic-pedicure': 'Класичний педикюр',
-        'hardware-pedicure': 'Апаратний педикюр',
-        'spa-pedicure': 'SPA-педикюр',
-        'medical-pedicure': 'Лікувальний педикюр',
+        // Pedicure
+        'classic-pedicure': 'Pedicure classica',
+        'hardware-pedicure': 'Pedicure con apparecchio',
+        'spa-pedicure': 'SPA-pedicure',
+        'medical-pedicure': 'Pedicure curativa',
         
-        // Брови
-        'brow-correction': 'Корекція брів',
-        'brow-coloring': 'Фарбування брів',
-        'brow-lamination': 'Ламінування брів',
-        'brow-complex': 'Комплекс для брів',
+        // Sopracciglia
+        'brow-correction': 'Correzione sopracciglia',
+        'brow-coloring': 'Colorazione sopracciglia',
+        'brow-lamination': 'Laminazione sopracciglia',
+        'brow-complex': 'Complesso per sopracciglia',
         
-        // Стрижки
-        'women-haircut': 'Жіноча стрижка',
-        'men-haircut': 'Чоловіча стрижка',
-        'child-haircut': 'Дитяча стрижка',
-        'hair-coloring': 'Фарбування волосся'
+        // Tagli
+        'women-haircut': 'Taglio femminile',
+        'men-haircut': 'Taglio maschile',
+        'child-haircut': 'Taglio per bambini',
+        'hair-coloring': 'Colorazione capelli'
     };
     return services[serviceValue] || serviceValue;
 }
 
-// Форматування дати
+// Formattazione data
 function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { 
@@ -229,12 +229,12 @@ function formatDate(dateString) {
         day: 'numeric',
         weekday: 'long'
     };
-    return date.toLocaleDateString('uk-UA', options);
+    return date.toLocaleDateString('it-IT', options);
 }
 
-// Показ повідомлень
+// Visualizzazione messaggi
 function showAlert(message, type) {
-    // Видалити попередні повідомлення
+    // Rimuovere messaggi precedenti
     const existingAlerts = document.querySelectorAll('.alert');
     existingAlerts.forEach(alert => alert.remove());
     
@@ -242,15 +242,15 @@ function showAlert(message, type) {
     alert.className = `alert alert-${type}`;
     alert.innerHTML = message.replace(/\n/g, '<br>');
     
-    // Вставити повідомлення після форми
+    // Inserire messaggio dopo il form
     const formContainer = document.querySelector('.booking-form-container');
     if (formContainer) {
         formContainer.appendChild(alert);
         
-        // Прокрутити до повідомлення
+        // Scorrere al messaggio
         alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-        // Автоматично видалити через 5 секунд
+        // Rimuovere automaticamente dopo 5 secondi
         setTimeout(() => {
             if (alert.parentNode) {
                 alert.remove();
@@ -259,7 +259,7 @@ function showAlert(message, type) {
     }
 }
 
-// Показ індикатора завантаження
+// Visualizzazione indicatore di caricamento
 function showLoading(show) {
     let loadingElement = document.querySelector('.loading');
     
@@ -269,7 +269,7 @@ function showLoading(show) {
             loadingElement.className = 'loading';
             loadingElement.innerHTML = `
                 <div class="spinner"></div>
-                <p>Відправляємо вашу заявку...</p>
+                <p>Stiamo inviando la vostra richiesta...</p>
             `;
             
             const submitButton = bookingForm.querySelector('button[type="submit"]');
@@ -286,7 +286,7 @@ function showLoading(show) {
     }
 }
 
-// Анімація появи елементів при прокрутці
+// Animazione apparizione elementi durante lo scorrimento
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -300,13 +300,13 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Спостереження за елементами для анімації
+// Osservazione elementi per l'animazione
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.service-card, .gallery-item, .feature, .contact-item');
     animatedElements.forEach(el => observer.observe(el));
 });
 
-// Галерея - збільшення зображень
+// Galleria - ingrandimento immagini
 const galleryItems = document.querySelectorAll('.gallery-item');
 galleryItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -317,7 +317,7 @@ galleryItems.forEach(item => {
     });
 });
 
-// Модальне вікно для зображень
+// Finestra modale per le immagini
 function openImageModal(src, alt) {
     const modal = document.createElement('div');
     modal.className = 'image-modal';
@@ -333,7 +333,7 @@ function openImageModal(src, alt) {
     document.body.appendChild(modal);
     document.body.style.overflow = 'hidden';
     
-    // Закриття модального вікна
+    // Chiusura finestra modale
     const closeModal = () => {
         modal.remove();
         document.body.style.overflow = 'auto';
@@ -346,7 +346,7 @@ function openImageModal(src, alt) {
         }
     });
     
-    // Закриття на Escape
+    // Chiusura con Escape
     document.addEventListener('keydown', function escapeHandler(e) {
         if (e.key === 'Escape') {
             closeModal();
@@ -355,7 +355,7 @@ function openImageModal(src, alt) {
     });
 }
 
-// Стилі для модального вікна (додаються динамічно)
+// Stili per la finestra modale (aggiunti dinamicamente)
 if (!document.querySelector('#modal-styles')) {
     const modalStyles = document.createElement('style');
     modalStyles.id = 'modal-styles';
@@ -420,12 +420,12 @@ if (!document.querySelector('#modal-styles')) {
     document.head.appendChild(modalStyles);
 }
 
-// Консольне повідомлення для розробника
+// Messaggio console per lo sviluppatore
 console.log(`
-🎨 Nail Studio Website
-📧 Не забудьте налаштувати EmailJS:
-1. Зареєструйтеся на https://www.emailjs.com/
-2. Створіть сервіс та шаблон
-3. Замініть YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID у коді
-4. Вкажіть ваш email для отримання заявок
+🎨 Sito Web Nail Studio
+📧 Non dimenticare di configurare EmailJS:
+1. Registrarsi su https://www.emailjs.com/
+2. Creare un servizio e un template
+3. Sostituire YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID nel codice
+4. Specificare la vostra email per ricevere le richieste
 `);
