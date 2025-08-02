@@ -190,7 +190,7 @@ body {
 
 .hero-image img {
     max-width: 100%;     /* Вместо 150% */
-    height: auto;        /* Вместо 1000px */
+    height: 800px;        /* Вместо 1000px */
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
